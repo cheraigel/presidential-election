@@ -4,7 +4,6 @@ import Main.Model.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -50,7 +49,24 @@ public class AdminController extends Main
         }
         catch(Exception ex)
         {
+            ex.printStackTrace();
+        }
+    }
 
+    public void candidateedit()
+    {
+        Alert a=new Alert(Alert.AlertType.INFORMATION);
+        try
+        {
+            con.createStatement().execute("update candidates set candidate_name='"+C_Name.getText()+"' where candidate_id='"+C_ID.getText()+"'");
+            a.setContentText("Successfully Updated !");
+            a.show();
+            C_ID.setText("");
+            C_Name.setText("");
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
         }
     }
 }
