@@ -16,9 +16,20 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
     public static void main(String[] args)
     {
+        DB Database=new DB();
+        Database.DBase();
         launch(args);
+
     }
 }
+
+
+
+/*
+References
+
+https://www.geeksforgeeks.org/javafx-alert-with-examples/
+
+ */
