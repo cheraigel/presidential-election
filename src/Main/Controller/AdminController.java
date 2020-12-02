@@ -23,9 +23,11 @@ public class AdminController extends Main
 
         try
         {
-            con.createStatement().execute("insert into candidates('"+Candidate_ID+"','"+Candidate_Name+"')");
+            con.createStatement().execute("insert into candidates(candidate_id,candidate_name)values ('"+Candidate_ID+"','"+Candidate_Name+"')");
             a.setContentText("Successfully Added !");
             a.show();
+            C_ID.setText("");
+            C_Name.setText("");
         }
         catch (Exception ex)
         {
