@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AdminController extends Main
@@ -32,6 +33,24 @@ public class AdminController extends Main
         catch (Exception ex)
         {
             ex.printStackTrace();
+        }
+    }
+
+    public void candidatesearch()
+    {
+        try
+        {
+            ResultSet r = con.createStatement().executeQuery("select * from candidates where candidate_id='"+C_ID.getText()+"'");
+            if(r.next())
+            {
+                Candidate_ID=r.getString("candidate_id");
+                Candidate_Name=r.getString("candidate_name");
+                C_Name.setText(Candidate_Name);
+            }
+        }
+        catch(Exception ex)
+        {
+
         }
     }
 }
