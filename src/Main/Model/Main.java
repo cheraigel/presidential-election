@@ -4,9 +4,15 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 public class Main extends Application {
+
+    private static Connection con;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -18,10 +24,17 @@ public class Main extends Application {
 
     public static void main(String[] args)
     {
-        DB Database=new DB();
-        Database.DBase();
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con= DriverManager.getConnection("jdbc:mysql://localhost/election?useSSL=false","root","");
+            System.out.println("Connecting To The Local DataBase ...");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         launch(args);
-
     }
 }
 

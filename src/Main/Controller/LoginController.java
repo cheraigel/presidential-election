@@ -13,6 +13,15 @@ public class LoginController
     {
             Uname=T_Uname.getText();
             PW=T_PW.getText();
+            try
+            {
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
 
 
     }
