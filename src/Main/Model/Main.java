@@ -12,7 +12,7 @@ import java.sql.DriverManager;
 
 public class Main extends Application {
 
-    private static Connection con;
+    public static Connection con;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
