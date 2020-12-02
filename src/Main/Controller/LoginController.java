@@ -3,9 +3,13 @@ package Main.Controller;
 import Main.Model.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-
+import javafx.stage.Stage;
 import java.sql.ResultSet;
 
 public class LoginController extends Main
@@ -15,7 +19,7 @@ public class LoginController extends Main
 
     private String Uname="",PW="";
 
-    public void login()
+    public void login(ActionEvent e)
     {
             Alert a = new Alert(Alert.AlertType.ERROR);
             Uname=T_Uname.getText();
@@ -25,17 +29,24 @@ public class LoginController extends Main
                 ResultSet r=con.createStatement().executeQuery("select * from accounts where username='"+Uname+"' and password='"+PW+"'");
                 if(r.next())
                 {
-                    System.out.println("Correct !");
+                    Stage admin=new Stage();
+                    Stage login=new Stage();
+                    Parent root1 = FXMLLoader.load(getClass().getResource("../View/admin.fxml"));
+                    admin.setTitle("Admin Window");
+                    admin.setScene(new Scene(root1, 600, 475));
+                    admin.show();
+                    login=(Stage) ((Node)e.getSource()).getScene().getWindow();
+                    login.close();
                 }
                 else
                 {
-                    a.setContentText("Incorrect Usename Or Password !");
+                    a.setContentText("Invalid Username Or Password !");
                     a.show();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                e.printStackTrace();
+                ex.printStackTrace();
             }
     }
 }
