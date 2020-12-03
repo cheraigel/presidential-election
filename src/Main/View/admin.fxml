@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.AdminController">
+<AnchorPane prefHeight="392.0" prefWidth="1105.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.AdminController">
    <children>
       <Label layoutX="225.0" layoutY="47.0" text="Enter Candidate Information" />
       <Label layoutX="178.0" layoutY="110.0" text="ID :" />
@@ -14,5 +14,11 @@
       <Button layoutX="461.0" layoutY="106.0" mnemonicParsing="false" onAction="#candidatesearch" text="Search" />
       <Button layoutX="282.0" layoutY="311.0" mnemonicParsing="false" onAction="#candidateedit" text="Edit" />
       <Button layoutX="375.0" layoutY="311.0" mnemonicParsing="false" onAction="#candidatedelete" text="Delete" />
+      <TableView layoutX="584.0" layoutY="106.0" prefHeight="238.0" prefWidth="485.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="ID" />
+          <TableColumn prefWidth="75.0" text="Name" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package Main.Controller;
 
+import Main.Model.Candidate;
 import Main.Model.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,10 +34,11 @@ public class LoginController extends Main
                     Stage login=new Stage();
                     Parent root1 = FXMLLoader.load(getClass().getResource("../View/admin.fxml"));
                     admin.setTitle("Admin Window");
-                    admin.setScene(new Scene(root1, 600, 475));
+                    admin.setScene(new Scene(root1, 1200, 475));
                     admin.show();
                     login=(Stage) ((Node)e.getSource()).getScene().getWindow();
                     login.close();
+                    candidate_add();
                 }
                 else
                 {
@@ -48,5 +50,24 @@ public class LoginController extends Main
             {
                 ex.printStackTrace();
             }
+    }
+
+    public void candidate_add()
+    {
+        try
+        {
+            ResultSet r = con.createStatement().executeQuery("select * from candidates");
+            while (r.next())
+            {
+                String Candidate_ID = r.getString("candidate_id");
+                String Candidate_Name=r.getString("candidate_name");
+                Candidate can=new Candidate(Candidate_ID,Candidate_Name);
+                allCandidates.add(can);
+            }
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
     }
 }
