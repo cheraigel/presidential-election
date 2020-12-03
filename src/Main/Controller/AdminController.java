@@ -1,5 +1,6 @@
 package Main.Controller;
 
+import Main.Model.Candidate;
 import Main.Model.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -21,9 +22,11 @@ public class AdminController extends Main
         Candidate_ID=C_ID.getText();
         Candidate_Name=C_Name.getText();
 
+        Candidate can=new Candidate(Candidate_ID,Candidate_Name);
+
         try
         {
-            con.createStatement().execute("insert into candidates(candidate_id,candidate_name)values ('"+Candidate_ID+"','"+Candidate_Name+"')");
+            con.createStatement().execute("insert into candidates(candidate_id,candidate_name)values ('"+can.getCandidate_Id()+"','"+can.getCandidate_Name()+"')");
             a.setContentText("Successfully Added !");
             a.show();
             C_ID.setText("");
@@ -65,6 +68,19 @@ public class AdminController extends Main
             C_Name.setText("");
         }
         catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
+    public void candidatedelete()
+    {
+        Alert a=new Alert(Alert.AlertType.WARNING);
+        try
+        {
+            //con.createStatement().execute()
+        }
+        catch(Exception ex)
         {
             ex.printStackTrace();
         }
