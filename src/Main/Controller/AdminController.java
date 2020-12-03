@@ -31,6 +31,7 @@ public class AdminController extends Main
             a.show();
             C_ID.setText("");
             C_Name.setText("");
+            allCandidates.put(Candidate_ID,can);
         }
         catch (Exception ex)
         {
@@ -66,6 +67,7 @@ public class AdminController extends Main
             a.show();
             C_ID.setText("");
             C_Name.setText("");
+            //allCandidates.indexOf(Candidate)
         }
         catch (Exception ex)
         {

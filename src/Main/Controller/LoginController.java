@@ -62,7 +62,7 @@ public class LoginController extends Main
                 String Candidate_ID = r.getString("candidate_id");
                 String Candidate_Name=r.getString("candidate_name");
                 Candidate can=new Candidate(Candidate_ID,Candidate_Name);
-                allCandidates.add(can);
+                allCandidates.put(Candidate_ID,can);
             }
         }
         catch(Exception ex)
