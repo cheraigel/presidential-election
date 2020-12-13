@@ -2,11 +2,13 @@ package Main.Controller;
 
 import Main.Model.Candidate;
 import Main.Model.Main;
+import Main.Model.Test;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public class AdminController extends Main
 {
@@ -41,20 +43,8 @@ public class AdminController extends Main
 
     public void candidatesearch()
     {
-        try
-        {
-            ResultSet r = con.createStatement().executeQuery("select * from candidates where candidate_id='"+C_ID.getText()+"'");
-            if(r.next())
-            {
-                Candidate_ID=r.getString("candidate_id");
-                Candidate_Name=r.getString("candidate_name");
-                C_Name.setText(Candidate_Name);
-            }
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
+        Candidate can=candidate_search(C_ID);
+        C_Name.setText(can.getCandidate_Name());
     }
 
     public void candidateedit()
@@ -67,7 +57,7 @@ public class AdminController extends Main
             a.show();
             C_ID.setText("");
             C_Name.setText("");
-            //allCandidates.indexOf(Candidate)
+            // carnet = carnets.get(codeIsIn);
         }
         catch (Exception ex)
         {

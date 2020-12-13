@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.sql.ResultSet;
+import java.util.HashMap;
 
 public class LoginController extends Main
 {
@@ -50,24 +51,5 @@ public class LoginController extends Main
             {
                 ex.printStackTrace();
             }
-    }
-
-    public void candidate_add()
-    {
-        try
-        {
-            ResultSet r = con.createStatement().executeQuery("select * from candidates");
-            while (r.next())
-            {
-                String Candidate_ID = r.getString("candidate_id");
-                String Candidate_Name=r.getString("candidate_name");
-                Candidate can=new Candidate(Candidate_ID,Candidate_Name);
-                allCandidates.put(Candidate_ID,can);
-            }
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
     }
 }
