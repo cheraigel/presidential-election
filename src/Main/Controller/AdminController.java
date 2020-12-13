@@ -2,13 +2,9 @@ package Main.Controller;
 
 import Main.Model.Candidate;
 import Main.Model.Main;
-import Main.Model.Test;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
 
 public class AdminController extends Main
 {
@@ -73,8 +69,11 @@ public class AdminController extends Main
         Alert a=new Alert(Alert.AlertType.WARNING);
         try
         {
-            //con.createStatement().execute()
-        }
+            con.createStatement().execute("delete from candidates where candidate_id='"+C_ID.getText()+"'");
+            allCandidates.remove(C_ID.getText());
+            C_ID.setText("");
+            C_Name.setText("");
+            }
         catch(Exception ex)
         {
             ex.printStackTrace();

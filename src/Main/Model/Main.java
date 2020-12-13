@@ -76,5 +76,6 @@ https://crunchify.com/how-to-iterate-through-java-list-4-way-to-iterate-through-
 https://stackoverflow.com/questions/20463325/how-to-return-multiple-rows-from-result-set-in-java
 https://www.javatpoint.com/arraylist-vs-hashmap-in-java#:~:text=The%20difference%20between%20ArrayList%20and,implementation%2C%20function%2C%20and%20usage.
 https://stackoverflow.com/questions/17526608/how-to-find-an-object-in-an-arraylist-by-property
+https://thispointer.com/java-how-to-update-the-value-of-an-existing-key-in-hashmap-put-vs-replace/
 
  */
