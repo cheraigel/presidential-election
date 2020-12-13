@@ -50,14 +50,17 @@ public class AdminController extends Main
     public void candidateedit()
     {
         Alert a=new Alert(Alert.AlertType.INFORMATION);
+        Candidate_ID=C_ID.getText();
+        Candidate_Name=C_Name.getText();
         try
         {
-            con.createStatement().execute("update candidates set candidate_name='"+C_Name.getText()+"' where candidate_id='"+C_ID.getText()+"'");
+            con.createStatement().execute("update candidates set candidate_name='"+Candidate_Name+"' where candidate_id='"+Candidate_ID+"'");
             a.setContentText("Successfully Updated !");
             a.show();
+            Candidate can=new Candidate(Candidate_ID,Candidate_Name);
             C_ID.setText("");
             C_Name.setText("");
-            // carnet = carnets.get(codeIsIn);
+            allCandidates.put(Candidate_ID,can);
         }
         catch (Exception ex)
         {
