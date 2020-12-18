@@ -4,15 +4,46 @@ import Main.Model.Candidate;
 import Main.Model.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.HashMap;
 
 public class AdminController extends Main
 {
     @FXML
-    private TextField C_ID,C_Name;
+    private TextField C_ID;
+
+    @FXML
+    private TextField C_Name;
+
+    @FXML
+    private TableView<Candidate> T_View;
+
+    @FXML
+    private TableColumn<Candidate,String> T_Id;
+
+    @FXML
+    private TableColumn<Candidate, String> T_Name;
+
 
     private String Candidate_ID,Candidate_Name;
 
+    public void tbutton()
+    {
+        T_Id.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Candidate_Id"));
+        T_Name.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Candidate_Name"));
+        for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
+        {
+            Candidate can=set.getValue();
+            candidates.add(can);
+        }
+
+        T_View.setItems(candidates);
+    }
+    @FXML
     public void candidateadd()
     {
         Alert a=new Alert(Alert.AlertType.INFORMATION);
@@ -39,8 +70,18 @@ public class AdminController extends Main
 
     public void candidatesearch()
     {
-        Candidate can=candidate_search(C_ID);
-        C_Name.setText(can.getCandidate_Name());
+        try
+        {
+            Candidate can=candidate_search(C_ID);
+            C_Name.setText(can.getCandidate_Name());
+        }
+        catch(NullPointerException ex)
+        {
+            Alert a=new Alert(Alert.AlertType.WARNING);
+            a.setContentText("Couldn't Find Any Records !");
+            a.show();
+        }
+
     }
 
     public void candidateedit()
