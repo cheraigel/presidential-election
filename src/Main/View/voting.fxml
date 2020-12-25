@@ -8,7 +8,7 @@
       <Label layoutX="140.0" layoutY="105.0" text="Your ID" />
       <Label layoutX="140.0" layoutY="152.0" text="Candidate" />
       <TextField fx:id="Y_Id" layoutX="384.0" layoutY="101.0" />
-      <Button layoutX="343.0" layoutY="308.0" mnemonicParsing="false" text="Vote" />
+      <Button layoutX="343.0" layoutY="308.0" mnemonicParsing="false" onAction="#vote" text="Vote" />
       <ComboBox prefWidth="150.0" />
       <ChoiceBox fx:id="C_Drop" layoutX="384.0" layoutY="148.0" prefWidth="150.0" />
    </children>

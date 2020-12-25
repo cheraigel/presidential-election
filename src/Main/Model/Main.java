@@ -27,6 +27,7 @@ public class Main extends Application {
     public static HashMap<String,Ballot> allBallots=new HashMap<>();
     public static ObservableList<Candidate> candidates = FXCollections.observableArrayList();
     public static ObservableList<String> candidatenames = FXCollections.observableArrayList();
+    public static ObservableList<String> candidateids = FXCollections.observableArrayList();
     public static int voting_state=0,candidate_count=0,ballot_count=0;
 
 
@@ -130,4 +131,5 @@ https://www.geeksforgeeks.org/hashmap-remove-method-in-java/#:~:text=HashMap.,pa
 https://stackoverflow.com/questions/38142554/blank-row-in-tableview-javafx-app
 https://www.w3schools.com/java/java_files_read.asp
 https://stackoverflow.com/questions/34785417/javafx-fxml-controller-constructor-vs-initialize-method
+https://www.geeksforgeeks.org/javafx-choicebox/#:~:text=ChoiceBox%20is%20a%20part%20of,selected%20item%20unless%20otherwise%20selected.
  */

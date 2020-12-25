@@ -27,8 +27,17 @@ public class VotingController extends Main
         {
             Candidate can=set.getValue();
             candidatenames.add(can.getCandidate_Name());
+            candidateids.add(can.getCandidate_Id());
         }
         C_Drop.setItems(candidatenames);
+    }
+
+    @FXML
+    public void vote()
+    {
+        int select_index= C_Drop.getSelectionModel().getSelectedIndex();
+
+        System.out.println(select_index);
     }
 
 }
