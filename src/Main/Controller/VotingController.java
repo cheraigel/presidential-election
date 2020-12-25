@@ -2,6 +2,7 @@ package Main.Controller;
 
 import Main.Model.Candidate;
 import Main.Model.Main;
+import Main.Model.Vote;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,7 +15,7 @@ import java.util.HashMap;
 public class VotingController extends Main
 {
     @FXML
-    private TextField U_Id;
+    private TextField Y_Id;
 
     @FXML
     private ChoiceBox C_Drop;
@@ -35,9 +36,18 @@ public class VotingController extends Main
     @FXML
     public void vote()
     {
-        int select_index= C_Drop.getSelectionModel().getSelectedIndex();
-
-        System.out.println(select_index);
+        String Cand_Id= candidateids.get(C_Drop.getSelectionModel().getSelectedIndex());
+        String Ballo_Id=Y_Id.getText();
+        Vote vot=new Vote(Ballo_Id,Cand_Id);
+        allVotes.put(Ballo_Id,vot);
+        try
+        {
+            con.createStatement().execute("insert into votes(ballot_id,candidate_id) values('"+vot.getBallot_ID()+"','"+vot.getCandidate_Id()+"')");
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
     }
 
 }
