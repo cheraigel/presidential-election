@@ -4,12 +4,17 @@ import Main.Model.Ballot;
 import Main.Model.Candidate;
 import Main.Model.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -48,7 +53,7 @@ public class AdminController extends Main
             while (Ballot_Reader.hasNextLine())
             {
                 String[] ballot = Ballot_Reader.nextLine().split("\\|");
-                //System.out.println(ballot[0]+" k "+ballot[1]);
+                System.out.println(ballot[0]+" k "+ballot[1]);
                 Ballot bal=new Ballot(ballot[0],ballot[1]);
                 allBallots.put(ballot[0],bal);
                 try
@@ -77,6 +82,56 @@ public class AdminController extends Main
         {
             System.out.println("An error occurred.");
             ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void start_vote(ActionEvent e)
+    {
+        Alert a=new Alert(Alert.AlertType.WARNING);
+        try
+        {
+            ballot_import();
+        }
+        catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+        can_counter();
+        ball_counter();
+        if((candidate_count!=0)&&(ballot_count!=0))
+        {
+            voting_state=1;
+            try
+            {
+                Stage voting=new Stage();
+                Stage admin=new Stage();
+                Parent root2 = FXMLLoader.load(getClass().getResource("../View/voting.fxml"));
+                voting.setTitle("Voting Window");
+                voting.setScene(new Scene(root2, 1200, 475));
+                voting.show();
+                admin=(Stage) ((Node)e.getSource()).getScene().getWindow();
+                admin.close();
+            }
+            catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
+        }
+        else if ((candidate_count==0)&&(ballot_count!=0))
+        {
+            a.setContentText("Cannot Start Voting With 0 Candidates !");
+            a.show();
+        }
+        else if ((ballot_count==0)&&(candidate_count!=0))
+        {
+            a.setContentText("Cannot Start Voting With 0 Ballots !");
+            a.show();
+        }
+        else
+        {
+            a.setContentText("Cannot Start Voting With 0 Candidates And 0 Ballots !");
+            a.show();
         }
     }
 

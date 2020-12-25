@@ -25,6 +25,7 @@ public class Main extends Application {
     public static HashMap<String,Candidate> allCandidates=new HashMap<>();
     public static HashMap<String,Ballot> allBallots=new HashMap<>();
     public static ObservableList<Candidate> candidates = FXCollections.observableArrayList();
+    public static int voting_state=0,candidate_count=0,ballot_count=0;
 
 
 
@@ -67,6 +68,24 @@ public class Main extends Application {
         catch(Exception ex)
         {
             ex.printStackTrace();
+        }
+    }
+
+    public void can_counter()
+    {
+        candidate_count=0;
+        for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
+        {
+            candidate_count++;
+        }
+    }
+
+    public void ball_counter()
+    {
+        ballot_count=0;
+        for (HashMap.Entry<String,Ballot> set : allBallots.entrySet())
+        {
+            ballot_count++;
         }
     }
 
