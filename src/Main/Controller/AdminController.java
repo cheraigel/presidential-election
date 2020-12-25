@@ -194,6 +194,13 @@ public class AdminController extends Main
             C_ID.setText("");
             C_Name.setText("");
             allCandidates.put(Candidate_ID,can);
+            candidates.clear();
+            for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
+            {
+                can=set.getValue();
+                candidates.add(can);
+            }
+            T_View.setItems(candidates);
         }
         catch (Exception ex)
         {
@@ -210,7 +217,14 @@ public class AdminController extends Main
             allCandidates.remove(C_ID.getText());
             C_ID.setText("");
             C_Name.setText("");
+            candidates.clear();
+            for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
+            {
+                Candidate can=set.getValue();
+                candidates.add(can);
             }
+            T_View.setItems(candidates);
+        }
         catch(Exception ex)
         {
             ex.printStackTrace();
