@@ -31,6 +31,7 @@ public class LoginController extends Main
                 ResultSet r=con.createStatement().executeQuery("select * from accounts where username='"+Uname+"' and password='"+PW+"'");
                 if(r.next())
                 {
+                    candidate_add();
                     Stage admin=new Stage();
                     Stage login=new Stage();
                     Parent root1 = FXMLLoader.load(getClass().getResource("../View/admin.fxml"));
@@ -39,7 +40,7 @@ public class LoginController extends Main
                     admin.show();
                     login=(Stage) ((Node)e.getSource()).getScene().getWindow();
                     login.close();
-                    candidate_add();
+
                 }
                 else
                 {

@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -29,8 +30,12 @@ public class Main extends Application {
 
 
 
+
+
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception
+    {
         Parent root = FXMLLoader.load(getClass().getResource("../View/login.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 600, 475));
@@ -123,5 +128,5 @@ https://thispointer.com/java-how-to-update-the-value-of-an-existing-key-in-hashm
 https://www.geeksforgeeks.org/hashmap-remove-method-in-java/#:~:text=HashMap.,particular%20key%20in%20the%20Map.&text=Parameters%3A%20The%20method%20takes%20one,be%20removed%20from%20the%20Map.
 https://stackoverflow.com/questions/38142554/blank-row-in-tableview-javafx-app
 https://www.w3schools.com/java/java_files_read.asp
-
+https://stackoverflow.com/questions/34785417/javafx-fxml-controller-constructor-vs-initialize-method
  */

@@ -9,10 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.File;
@@ -136,19 +133,6 @@ public class AdminController extends Main
     }
 
     @FXML
-    public void tbutton()
-    {
-        T_Id.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Candidate_Id"));
-        T_Name.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Candidate_Name"));
-        for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
-        {
-            Candidate can=set.getValue();
-            candidates.add(can);
-        }
-
-        T_View.setItems(candidates);
-    }
-    @FXML
     public void candidateadd()
     {
         Alert a=new Alert(Alert.AlertType.INFORMATION);
@@ -166,6 +150,13 @@ public class AdminController extends Main
             C_ID.setText("");
             C_Name.setText("");
             allCandidates.put(Candidate_ID,can);
+            candidates.clear();
+            for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
+            {
+                can=set.getValue();
+                candidates.add(can);
+            }
+            T_View.setItems(candidates);
         }
         catch (Exception ex)
         {
@@ -224,5 +215,19 @@ public class AdminController extends Main
         {
             ex.printStackTrace();
         }
+    }
+
+    @FXML
+    public void initialize()
+    {
+
+        T_Id.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Candidate_Id"));
+        T_Name.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Candidate_Name"));
+        for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
+        {
+            Candidate can=set.getValue();
+            candidates.add(can);
+        }
+        T_View.setItems(candidates);
     }
 }
