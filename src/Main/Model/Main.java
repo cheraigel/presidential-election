@@ -13,7 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -23,6 +23,7 @@ public class Main extends Application {
 
     public static Connection con;
     public static HashMap<String,Candidate> allCandidates=new HashMap<>();
+    public static HashMap<String,Ballot> allBallots=new HashMap<>();
     public static ObservableList<Candidate> candidates = FXCollections.observableArrayList();
 
 
@@ -101,6 +102,7 @@ https://www.javatpoint.com/arraylist-vs-hashmap-in-java#:~:text=The%20difference
 https://stackoverflow.com/questions/17526608/how-to-find-an-object-in-an-arraylist-by-property
 https://thispointer.com/java-how-to-update-the-value-of-an-existing-key-in-hashmap-put-vs-replace/
 https://www.geeksforgeeks.org/hashmap-remove-method-in-java/#:~:text=HashMap.,particular%20key%20in%20the%20Map.&text=Parameters%3A%20The%20method%20takes%20one,be%20removed%20from%20the%20Map.
-
+https://stackoverflow.com/questions/38142554/blank-row-in-tableview-javafx-app
+https://www.w3schools.com/java/java_files_read.asp
 
  */
