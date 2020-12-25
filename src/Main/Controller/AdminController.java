@@ -50,7 +50,7 @@ public class AdminController extends Main
             while (Ballot_Reader.hasNextLine())
             {
                 String[] ballot = Ballot_Reader.nextLine().split("\\|");
-                System.out.println(ballot[0]+" k "+ballot[1]);
+                //System.out.println(ballot[0]+" k "+ballot[1]);
                 Ballot bal=new Ballot(ballot[0],ballot[1]);
                 allBallots.put(ballot[0],bal);
                 try

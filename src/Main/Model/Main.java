@@ -26,6 +26,7 @@ public class Main extends Application {
     public static HashMap<String,Candidate> allCandidates=new HashMap<>();
     public static HashMap<String,Ballot> allBallots=new HashMap<>();
     public static ObservableList<Candidate> candidates = FXCollections.observableArrayList();
+    public static ObservableList<String> candidatenames = FXCollections.observableArrayList();
     public static int voting_state=0,candidate_count=0,ballot_count=0;
 
 
