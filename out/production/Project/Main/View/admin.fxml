@@ -22,7 +22,7 @@
       </TableView>
       <Button layoutX="102.0" layoutY="225.0" mnemonicParsing="false" onAction="#ballot_import" text="Import Bllots" />
       <Button layoutX="215.0" layoutY="225.0" mnemonicParsing="false" onAction="#start_vote" text="Start Voting" />
-      <Button layoutX="319.0" layoutY="225.0" mnemonicParsing="false" text="End Voting" />
+      <Button layoutX="319.0" layoutY="225.0" mnemonicParsing="false" onAction="#end_vote" text="End Voting" />
       <Button layoutX="426.0" layoutY="225.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
    </children>
 </AnchorPane>

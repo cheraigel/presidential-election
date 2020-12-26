@@ -57,11 +57,17 @@ public class LoginController extends Main
     }
     public void vote_start()
     {
-        Alert a = new Alert(Alert.AlertType.ERROR);
+        Alert a;
         if(voting_state==0)
         {
             a = new Alert(Alert.AlertType.ERROR);
             a.setContentText("You Cannot Vote Now Please Ask For Admins To Start Voting !");
+            a.show();
+        }
+        else if(voting_state==2)
+        {
+            a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("The Voting Has Been Ended !");
             a.show();
         }
         else

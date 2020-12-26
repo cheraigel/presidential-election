@@ -235,9 +235,28 @@ public class AdminController extends Main
     }
 
     @FXML
+    public void end_vote()
+    {
+        Alert a;
+        if(voting_state==0)
+        {
+            a=new Alert(Alert.AlertType.WARNING);
+            a.setContentText("Please Start Voting First !");
+            a.show();
+        }
+        else
+        {
+            voting_state=2;
+            a=new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Voting Has Been Ended !");
+            a.show();
+        }
+    }
+
+    @FXML
     public void initialize()
     {
-
+        candidates.clear();
         T_Id.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Candidate_Id"));
         T_Name.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Candidate_Name"));
         for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
