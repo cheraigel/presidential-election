@@ -85,48 +85,31 @@ public class AdminController extends Main
     @FXML
     public void start_vote(ActionEvent e)
     {
-        Alert a=new Alert(Alert.AlertType.WARNING);
-        try
-        {
-            ballot_import();
-        }
-        catch (IOException ex)
-        {
-            ex.printStackTrace();
-        }
+        Alert a;
         can_counter();
         ball_counter();
         if((candidate_count!=0)&&(ballot_count!=0))
         {
             voting_state=1;
-            try
-            {
-                Stage login=new Stage();
-                Stage admin=new Stage();
-                Parent root2 = FXMLLoader.load(getClass().getResource("../View/login.fxml"));
-                login.setTitle("Login");
-                login.setScene(new Scene(root2, 780, 475));
-                login.show();
-                admin=(Stage) ((Node)e.getSource()).getScene().getWindow();
-                admin.close();
-            }
-            catch(Exception ex)
-            {
-                ex.printStackTrace();
-            }
+            a=new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Voting Has Been Started !");
+            a.show();
         }
         else if ((candidate_count==0)&&(ballot_count!=0))
         {
+            a=new Alert(Alert.AlertType.ERROR);
             a.setContentText("Cannot Start Voting With 0 Candidates !");
             a.show();
         }
         else if ((ballot_count==0)&&(candidate_count!=0))
         {
+            a=new Alert(Alert.AlertType.ERROR);
             a.setContentText("Cannot Start Voting With 0 Ballots !");
             a.show();
         }
         else
         {
+            a=new Alert(Alert.AlertType.ERROR);
             a.setContentText("Cannot Start Voting With 0 Candidates And 0 Ballots !");
             a.show();
         }
@@ -224,6 +207,26 @@ public class AdminController extends Main
                 candidates.add(can);
             }
             T_View.setItems(candidates);
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void logout(ActionEvent e)
+    {
+        try
+        {
+            Stage login=new Stage();
+            Stage admin=new Stage();
+            Parent root2 = FXMLLoader.load(getClass().getResource("../View/login.fxml"));
+            login.setTitle("Login");
+            login.setScene(new Scene(root2, 780, 475));
+            login.show();
+            admin=(Stage) ((Node)e.getSource()).getScene().getWindow();
+            admin.close();
         }
         catch(Exception ex)
         {
