@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.File;
@@ -43,42 +44,55 @@ public class AdminController extends Main
     @FXML
     public void ballot_import()throws IOException
     {
-        try
+        Alert a;
+        if(voting_state==1)
         {
-            File Ballot_File = new File("Ballots.txt");
-            Scanner Ballot_Reader = new Scanner(Ballot_File);
-            while (Ballot_Reader.hasNextLine())
+            a=new Alert(AlertType.ERROR);
+            a.setContentText("You Cannot Import Ballots During Voting !");
+            a.show();
+        }
+        else
+        {
+            try
             {
-                String[] ballot = Ballot_Reader.nextLine().split("\\|");
-                //System.out.println(ballot[0]+" k "+ballot[1]);
-                Ballot bal=new Ballot(ballot[0],ballot[1]);
-                allBallots.put(ballot[0],bal);
-                try
+                File Ballot_File = new File("Ballots.txt");
+                Scanner Ballot_Reader = new Scanner(Ballot_File);
+                while (Ballot_Reader.hasNextLine())
                 {
-                    con.createStatement().execute("insert into ballots(ballot_id,ballot_name)values ('"+bal.getBallot_Id()+"','"+bal.getBallot_Name()+"')");
-                }
-                catch (SQLIntegrityConstraintViolationException ex)
-                {
+                    String[] ballot = Ballot_Reader.nextLine().split("\\|");
+                    //System.out.println(ballot[0]+" k "+ballot[1]);
+                    Ballot bal = new Ballot(ballot[0], ballot[1]);
+                    allBallots.put(ballot[0], bal);
                     try
                     {
-                        con.createStatement().execute("update ballots set ballot_name='"+bal.getBallot_Name()+"' where ballot_id='"+bal.getBallot_Id()+"'");
+                        con.createStatement().execute("insert into ballots(ballot_id,ballot_name)values ('" + bal.getBallot_Id() + "','" + bal.getBallot_Name() + "')");
                     }
-                    catch(Exception ex3)
+                    catch (SQLIntegrityConstraintViolationException ex)
                     {
-                        ex3.printStackTrace();
+                        try
+                        {
+                            con.createStatement().execute("update ballots set ballot_name='" + bal.getBallot_Name() + "' where ballot_id='" + bal.getBallot_Id() + "'");
+                        }
+                        catch (Exception ex3)
+                        {
+                            ex3.printStackTrace();
+                        }
+                    }
+                    catch (SQLException ex2)
+                    {
+                        ex2.printStackTrace();
                     }
                 }
-                catch (SQLException ex2)
-                {
-                    ex2.printStackTrace();
-                }
+                a = new Alert(AlertType.INFORMATION);
+                a.setContentText("Successfully Imported !");
+                a.show();
+                Ballot_Reader.close();
             }
-            Ballot_Reader.close();
-        }
-        catch(FileNotFoundException ex)
-        {
-            System.out.println("An error occurred.");
-            ex.printStackTrace();
+            catch (FileNotFoundException ex)
+            {
+                System.out.println("An error occurred.");
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -118,6 +132,7 @@ public class AdminController extends Main
     @FXML
     public void candidateadd()
     {
+        
         Alert a=new Alert(Alert.AlertType.INFORMATION);
 
         Candidate_ID=C_ID.getText();
