@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.HashMap;
 
@@ -16,19 +17,33 @@ public class VotingController extends Main
 {
 
     @FXML
+    private TableView<Candidate> Can_Table;
+
+    @FXML
+    private TableColumn<Candidate ,String> C_Id;
+
+    @FXML
+    private TableColumn<Candidate ,String> C_Name;
+
+    @FXML
     private ChoiceBox C_Drop;
 
     @FXML
     public void initialize()
     {
+        C_Id.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Candidate_Id"));
+        C_Name.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Candidate_Name"));
         candidatenames.clear();
+        candidates.clear();
         for (HashMap.Entry<String, Candidate> set : allCandidates.entrySet())
         {
             Candidate can=set.getValue();
             candidatenames.add(can.getCandidate_Name());
             candidateids.add(can.getCandidate_Id());
+            candidates.add(can);
         }
         C_Drop.setItems(candidatenames);
+        Can_Table.setItems(candidates);
     }
 
     @FXML

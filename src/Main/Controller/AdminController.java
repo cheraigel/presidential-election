@@ -225,24 +225,33 @@ public class AdminController extends Main
 
     public void candidatedelete()
     {
-        Alert a=new Alert(Alert.AlertType.WARNING);
-        try
+        if(voting_state==1)
         {
-            con.createStatement().execute("delete from candidates where candidate_id='"+C_ID.getText()+"'");
-            allCandidates.remove(C_ID.getText());
-            C_ID.setText("");
-            C_Name.setText("");
-            candidates.clear();
-            for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
-            {
-                Candidate can=set.getValue();
-                candidates.add(can);
-            }
-            T_View.setItems(candidates);
+            a=new Alert(AlertType.ERROR);
+            a.setContentText("You Cannot Delete Candidates While Voting !");
+            a.show();
         }
-        catch(Exception ex)
+        else
         {
-            ex.printStackTrace();
+            a = new Alert(Alert.AlertType.WARNING);
+            try
+            {
+                con.createStatement().execute("delete from candidates where candidate_id='" + C_ID.getText() + "'");
+                allCandidates.remove(C_ID.getText());
+                C_ID.setText("");
+                C_Name.setText("");
+                candidates.clear();
+                for (HashMap.Entry<String, Candidate> set : allCandidates.entrySet())
+                {
+                    Candidate can = set.getValue();
+                    candidates.add(can);
+                }
+                T_View.setItems(candidates);
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
         }
     }
 
