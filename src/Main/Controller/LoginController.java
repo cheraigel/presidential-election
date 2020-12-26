@@ -1,7 +1,9 @@
 package Main.Controller;
 
+import Main.Model.Ballot;
 import Main.Model.Candidate;
 import Main.Model.Main;
+import Main.Model.Vote;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +19,7 @@ import java.util.HashMap;
 public class LoginController extends Main
 {
     @FXML
-    private TextField T_Uname,T_PW;
+    private TextField T_Uname,T_PW,V_Id;
 
     private String Uname="",PW="";
 
@@ -52,5 +54,54 @@ public class LoginController extends Main
             {
                 ex.printStackTrace();
             }
+    }
+    public void vote_start()
+    {
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        if(voting_state==0)
+        {
+            a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("You Cannot Vote Now Please Ask For Admins To Start Voting !");
+            a.show();
+        }
+        else
+        {
+            String Ballo_Id = V_Id.getText();
+            Ballot_Id=Ballo_Id;
+            Ballot ball = (Ballot) allBallots.get(Ballo_Id);
+            Vote vot = (Vote) allVotes.get(Ballo_Id);
+            if (ball == null)
+            {
+                a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("Please Enter Valid Id");
+                a.show();
+            }
+            else
+            {
+                try
+                {
+                    String tmp = vot.getBallot_ID();
+                    a = new Alert(Alert.AlertType.ERROR);
+                    a.setContentText("You Have Already Voted !");
+                    a.show();
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        Stage voting = new Stage();
+                        Stage login = new Stage();
+                        Parent root3 = FXMLLoader.load(getClass().getResource("../View/voting.fxml"));
+                        voting.setTitle("Voting Window");
+                        voting.setScene(new Scene(root3, 1200, 475));
+                        voting.show();
+                    }
+                    catch (Exception ex1)
+                    {
+                        ex1.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 }

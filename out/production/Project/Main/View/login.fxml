@@ -3,12 +3,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.LoginController">
    <children>
-      <Label layoutX="121.0" layoutY="81.0" text="Username  :" />
-      <Label layoutX="123.0" layoutY="135.0" text="Password  :" />
-      <TextField fx:id="T_Uname" layoutX="290.0" layoutY="77.0" />
-      <PasswordField fx:id="T_PW" layoutX="290.0" layoutY="131.0" />
-      <Button layoutX="274.0" layoutY="250.0" mnemonicParsing="false" onAction="#login" text="Login" />
+      <AnchorPane layoutX="26.0" layoutY="46.0" prefHeight="290.0" prefWidth="355.0" style="-fx-background-color: #aaaaaa;">
+         <children>
+            <TextField fx:id="T_Uname" layoutX="154.0" layoutY="31.0" />
+            <Label layoutX="40.0" layoutY="35.0" text="Username  :" />
+            <Label layoutX="42.0" layoutY="91.0" text="Password  :" />
+            <PasswordField fx:id="T_PW" layoutX="154.0" layoutY="87.0" />
+            <Button layoutX="155.0" layoutY="207.0" mnemonicParsing="false" onAction="#login" text="Login" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="402.0" layoutY="46.0" prefHeight="290.0" prefWidth="355.0" style="-fx-background-color: #aaaaaa;">
+         <children>
+            <Label layoutX="32.0" layoutY="53.0" text="Voter ID :" />
+            <TextField fx:id="V_Id" layoutX="156.0" layoutY="49.0" />
+            <Button layoutX="138.0" layoutY="213.0" mnemonicParsing="false" onAction="#vote_start" text="Start Voting" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

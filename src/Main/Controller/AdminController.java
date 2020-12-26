@@ -101,12 +101,12 @@ public class AdminController extends Main
             voting_state=1;
             try
             {
-                Stage voting=new Stage();
+                Stage login=new Stage();
                 Stage admin=new Stage();
-                Parent root2 = FXMLLoader.load(getClass().getResource("../View/voting.fxml"));
-                voting.setTitle("Voting Window");
-                voting.setScene(new Scene(root2, 1200, 475));
-                voting.show();
+                Parent root2 = FXMLLoader.load(getClass().getResource("../View/login.fxml"));
+                login.setTitle("Login");
+                login.setScene(new Scene(root2, 780, 475));
+                login.show();
                 admin=(Stage) ((Node)e.getSource()).getScene().getWindow();
                 admin.close();
             }
