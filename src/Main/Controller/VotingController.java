@@ -36,24 +36,24 @@ public class VotingController extends Main
     @FXML
     public void vote()
     {
-        Alert a;
+        final Alert[] a = new Alert[3];
         String Cand_Id= candidateids.get(C_Drop.getSelectionModel().getSelectedIndex());
         String Ballo_Id=Y_Id.getText();
         Ballot ball = (Ballot) allBallots.get(Ballo_Id);
         if (ball==null)
         {
-            a=new Alert(Alert.AlertType.WARNING);
-            a.setContentText("Please Enter Valid Id");
-            a.show();
+            a[0] =new Alert(Alert.AlertType.WARNING);
+            a[0].setContentText("Please Enter Valid Id");
+            a[0].show();
         }
         else
         {
-            a=new Alert(Alert.AlertType.INFORMATION);
-            a.setContentText("Are You Sure ?");
+            a[0] =new Alert(Alert.AlertType.INFORMATION);
+            a[0].setContentText("Are You Sure ?");
             ButtonType ok = new ButtonType("Yes", ButtonBar.ButtonData.YES);
             ButtonType no = new ButtonType("No", ButtonBar.ButtonData.NO);
-            a.getButtonTypes().setAll(ok, no);
-            a.showAndWait().ifPresent(type ->
+            a[0].getButtonTypes().setAll(ok, no);
+            a[0].showAndWait().ifPresent(type ->
                     {
                         if (type == ok)
                         {
@@ -63,21 +63,20 @@ public class VotingController extends Main
                             {
                                 con.createStatement().execute("insert into votes(ballot_id,candidate_id) values('"+vot.getBallot_ID()+"','"+vot.getCandidate_Id()+"')");
                                 Y_Id.setText("");
-                                //Alert.AlertType alertAlertType;
-                                /*a=new Alert(AlertType.INFORMATION);
-                                a.setContentText("Successfully Added !");
-                                a.show();*/
-                                System.out.println("Success");
+
+                                a[1] =new Alert(AlertType.INFORMATION);
+                                a[1].setContentText("Successfully Added !");
+                                a[1].show();
                             }
                             catch(Exception ex)
                             {
                                 if(ex.getMessage().equals("Duplicate entry '"+Ballo_Id+"' for key 'PRIMARY'"))
                                 {
-                                    /*
-                                    a=new Alert(Alert.AlertType.ERROR);
-                                    a.setContentText("You Have Alredy Voted !");
-                                    a.show();*/
-                                    System.out.println("fail");
+
+                                    Alert.AlertType alertAlertType;
+                                    a[2]= new Alert(AlertType.ERROR);
+                                    a[2].setContentText("You Have Alredy Voted !");
+                                    a[2].show();
                                 }
                                 else
                                 {
@@ -87,7 +86,7 @@ public class VotingController extends Main
                         }
                         else if (type == no)
                         {
-                            System.out.println("No");
+                            
                         }
                     }
             );
