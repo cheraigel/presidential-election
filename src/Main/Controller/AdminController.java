@@ -3,6 +3,7 @@ package Main.Controller;
 import Main.Model.Ballot;
 import Main.Model.Candidate;
 import Main.Model.Main;
+import Main.Model.Vote;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.event.ActionEvent;
@@ -287,6 +288,26 @@ public class AdminController extends Main
         }
         else
         {
+            for (HashMap.Entry<String, Candidate> set1 : allCandidates.entrySet())
+            {
+                Candidate can = set1.getValue();
+                System.out.print(can.getCandidate_Name()+"\t : \t");
+                int can_count=0;
+                for (HashMap.Entry<String, Vote> set2 : allVotes.entrySet())
+                {
+                    Vote vot = set2.getValue();
+                    if(vot.getCandidate_Id().equals(can.getCandidate_Id()))
+                    {
+                        can_count++;
+                    }
+                }
+                System.out.print(can_count+" | ");
+                for(int i=0;i<can_count;i++)
+                {
+                    System.out.print("*");
+                }
+                System.out.println();
+            }
             voting_state=2;
             a=new Alert(Alert.AlertType.INFORMATION);
             a.setContentText("Voting Has Been Ended !");
