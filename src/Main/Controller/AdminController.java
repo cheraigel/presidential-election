@@ -41,10 +41,11 @@ public class AdminController extends Main
 
     private String Candidate_ID,Candidate_Name;
 
+    private Alert a;
+
     @FXML
     public void ballot_import()throws IOException
     {
-        Alert a;
         if(voting_state==1)
         {
             a=new Alert(AlertType.ERROR);
@@ -99,7 +100,6 @@ public class AdminController extends Main
     @FXML
     public void start_vote(ActionEvent e)
     {
-        Alert a;
         can_counter();
         ball_counter();
         if((candidate_count!=0)&&(ballot_count!=0))
@@ -132,7 +132,6 @@ public class AdminController extends Main
     @FXML
     public void candidateadd()
     {
-        Alert a;
         if(voting_state==1)
         {
             a=new Alert(AlertType.ERROR);
@@ -189,29 +188,38 @@ public class AdminController extends Main
 
     public void candidateedit()
     {
-        Alert a=new Alert(Alert.AlertType.INFORMATION);
-        Candidate_ID=C_ID.getText();
-        Candidate_Name=C_Name.getText();
-        try
+        if(voting_state==1)
         {
-            con.createStatement().execute("update candidates set candidate_name='"+Candidate_Name+"' where candidate_id='"+Candidate_ID+"'");
-            a.setContentText("Successfully Updated !");
+            a=new Alert(AlertType.ERROR);
+            a.setContentText("You Cannot Edit Candidates While Voting !");
             a.show();
-            Candidate can=new Candidate(Candidate_ID,Candidate_Name);
-            C_ID.setText("");
-            C_Name.setText("");
-            allCandidates.put(Candidate_ID,can);
-            candidates.clear();
-            for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
-            {
-                can=set.getValue();
-                candidates.add(can);
-            }
-            T_View.setItems(candidates);
         }
-        catch (Exception ex)
+        else
         {
-            ex.printStackTrace();
+            a = new Alert(Alert.AlertType.INFORMATION);
+            Candidate_ID = C_ID.getText();
+            Candidate_Name = C_Name.getText();
+            try
+            {
+                con.createStatement().execute("update candidates set candidate_name='" + Candidate_Name + "' where candidate_id='" + Candidate_ID + "'");
+                a.setContentText("Successfully Updated !");
+                a.show();
+                Candidate can = new Candidate(Candidate_ID, Candidate_Name);
+                C_ID.setText("");
+                C_Name.setText("");
+                allCandidates.put(Candidate_ID, can);
+                candidates.clear();
+                for (HashMap.Entry<String, Candidate> set : allCandidates.entrySet())
+                {
+                    can = set.getValue();
+                    candidates.add(can);
+                }
+                T_View.setItems(candidates);
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
         }
     }
 
