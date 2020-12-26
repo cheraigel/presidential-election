@@ -132,33 +132,42 @@ public class AdminController extends Main
     @FXML
     public void candidateadd()
     {
-        
-        Alert a=new Alert(Alert.AlertType.INFORMATION);
-
-        Candidate_ID=C_ID.getText();
-        Candidate_Name=C_Name.getText();
-
-        Candidate can=new Candidate(Candidate_ID,Candidate_Name);
-
-        try
+        Alert a;
+        if(voting_state==1)
         {
-            con.createStatement().execute("insert into candidates(candidate_id,candidate_name)values ('"+can.getCandidate_Id()+"','"+can.getCandidate_Name()+"')");
-            a.setContentText("Successfully Added !");
+            a=new Alert(AlertType.ERROR);
+            a.setContentText("You Cannot Add Candidates While Voting !");
             a.show();
-            C_ID.setText("");
-            C_Name.setText("");
-            allCandidates.put(Candidate_ID,can);
-            candidates.clear();
-            for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
-            {
-                can=set.getValue();
-                candidates.add(can);
-            }
-            T_View.setItems(candidates);
         }
-        catch (Exception ex)
+        else
         {
-            ex.printStackTrace();
+            a = new Alert(Alert.AlertType.INFORMATION);
+
+            Candidate_ID = C_ID.getText();
+            Candidate_Name = C_Name.getText();
+
+            Candidate can = new Candidate(Candidate_ID, Candidate_Name);
+
+            try
+            {
+                con.createStatement().execute("insert into candidates(candidate_id,candidate_name)values ('" + can.getCandidate_Id() + "','" + can.getCandidate_Name() + "')");
+                a.setContentText("Successfully Added !");
+                a.show();
+                C_ID.setText("");
+                C_Name.setText("");
+                allCandidates.put(Candidate_ID, can);
+                candidates.clear();
+                for (HashMap.Entry<String, Candidate> set : allCandidates.entrySet())
+                {
+                    can = set.getValue();
+                    candidates.add(can);
+                }
+                T_View.setItems(candidates);
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
         }
     }
 
