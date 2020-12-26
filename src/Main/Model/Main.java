@@ -133,4 +133,5 @@ https://stackoverflow.com/questions/38142554/blank-row-in-tableview-javafx-app
 https://www.w3schools.com/java/java_files_read.asp
 https://stackoverflow.com/questions/34785417/javafx-fxml-controller-constructor-vs-initialize-method
 https://www.geeksforgeeks.org/javafx-choicebox/#:~:text=ChoiceBox%20is%20a%20part%20of,selected%20item%20unless%20otherwise%20selected.
+https://tagmycode.com/snippet/5207/yes-no-cancel-dialog-in-javafx#.X-bJDh5R2Uk
  */
