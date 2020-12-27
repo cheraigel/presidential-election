@@ -31,9 +31,9 @@ public class Main extends Application {
     public static ObservableList<String> candidatenames = FXCollections.observableArrayList();
     public static ObservableList<String> candidateids = FXCollections.observableArrayList();
     public static int voting_state=0,candidate_count=0,ballot_count=0,max=-1;
-
     public static String Ballot_Id;
-
+    public String CId,CName,CNIC,CPId,CPName,CAddress,CTelNo;
+    public int CAge;
 
 
 
@@ -70,10 +70,8 @@ public class Main extends Application {
             ResultSet r = con.createStatement().executeQuery("select * from candidates");
             while (r.next())
             {
-                String Candidate_ID = r.getString("candidate_id");
-                String Candidate_Name=r.getString("candidate_name");
-                Candidate can=new Candidate(Candidate_ID,Candidate_Name);
-                allCandidates.put(Candidate_ID,can);
+                Candidate can=new Candidate(r.getString("candidate_id"),r.getString("candidate_name"),r.getString("nic"),r.getString("party_id"),r.getString("party_name"),r.getString("address"),r.getString("tel_no"),r.getInt("age"));
+                allCandidates.put(r.getString("candidate_id"),can);
             }
         }
         catch(Exception ex)

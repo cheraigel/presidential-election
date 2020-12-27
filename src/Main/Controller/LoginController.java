@@ -38,7 +38,7 @@ public class LoginController extends Main
                     Stage login=new Stage();
                     Parent root1 = FXMLLoader.load(getClass().getResource("../View/admin.fxml"));
                     admin.setTitle("Admin Window");
-                    admin.setScene(new Scene(root1, 1200, 475));
+                    admin.setScene(new Scene(root1, 960, 600));
                     admin.show();
                     login=(Stage) ((Node)e.getSource()).getScene().getWindow();
                     login.close();

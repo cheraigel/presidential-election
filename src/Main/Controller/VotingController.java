@@ -43,8 +43,8 @@ public class VotingController extends Main
         for (HashMap.Entry<String, Candidate> set : allCandidates.entrySet())
         {
             Candidate can=set.getValue();
-            candidatenames.add(can.getCandidate_Name());
-            candidateids.add(can.getCandidate_Id());
+            candidatenames.add(can.getName());
+            candidateids.add(can.getId());
             candidates.add(can);
         }
         C_Drop.setItems(candidatenames);
