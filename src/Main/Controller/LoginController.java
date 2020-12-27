@@ -22,38 +22,37 @@ public class LoginController extends Main
     private TextField T_Uname,T_PW,V_Id;
 
     private String Uname="",PW="";
+    private Alert a;
 
     public void login(ActionEvent e)
     {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            Uname=T_Uname.getText();
-            PW=T_PW.getText();
-            try
+        a = new Alert(Alert.AlertType.ERROR);
+        Uname=T_Uname.getText();
+        PW=T_PW.getText();
+        try
+        {
+            ResultSet r=con.createStatement().executeQuery("select * from accounts where username='"+Uname+"' and password='"+PW+"'");
+            if(r.next())
             {
-                ResultSet r=con.createStatement().executeQuery("select * from accounts where username='"+Uname+"' and password='"+PW+"'");
-                if(r.next())
-                {
-                    candidate_add();
-                    Stage admin=new Stage();
-                    Stage login=new Stage();
-                    Parent root1 = FXMLLoader.load(getClass().getResource("../View/admin.fxml"));
-                    admin.setTitle("Admin Window");
-                    admin.setScene(new Scene(root1, 960, 600));
-                    admin.show();
-                    login=(Stage) ((Node)e.getSource()).getScene().getWindow();
-                    login.close();
-
-                }
-                else
-                {
-                    a.setContentText("Invalid Username Or Password !");
-                    a.show();
-                }
+                Stage admin=new Stage();
+                Stage login=new Stage();
+                Parent root1 = FXMLLoader.load(getClass().getResource("../View/admin.fxml"));
+                admin.setTitle("Admin Window");
+                admin.setScene(new Scene(root1, 960, 600));
+                admin.show();
+                login=(Stage) ((Node)e.getSource()).getScene().getWindow();
+                login.close();
             }
-            catch (Exception ex)
+            else
             {
-                ex.printStackTrace();
+                a.setContentText("Invalid Username Or Password !");
+                a.show();
             }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
     }
     public void vote_start()
     {

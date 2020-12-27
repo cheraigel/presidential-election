@@ -35,10 +35,6 @@ public class Main extends Application {
     public String CId,CName,CNIC,CPId,CPName,CAddress,CTelNo;
     public int CAge;
 
-
-
-
-
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -62,47 +58,6 @@ public class Main extends Application {
         }
         launch(args);
     }
-
-    public static void candidate_add()
-    {
-        try
-        {
-            ResultSet r = con.createStatement().executeQuery("select * from candidates");
-            while (r.next())
-            {
-                Candidate can=new Candidate(r.getString("candidate_id"),r.getString("candidate_name"),r.getString("nic"),r.getString("party_id"),r.getString("party_name"),r.getString("address"),r.getString("tel_no"),r.getInt("age"));
-                allCandidates.put(r.getString("candidate_id"),can);
-            }
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-    }
-
-    public void can_counter()
-    {
-        candidate_count=0;
-        for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
-        {
-            candidate_count++;
-        }
-    }
-
-    public void ball_counter()
-    {
-        ballot_count=0;
-        for (HashMap.Entry<String,Ballot> set : allBallots.entrySet())
-        {
-            ballot_count++;
-        }
-    }
-
-    public static Candidate candidate_search(TextField C_ID)
-    {
-        Candidate can = (Candidate)allCandidates.get(C_ID.getText());
-        return can;
-    }
 }
 
 
@@ -122,4 +77,6 @@ https://www.w3schools.com/java/java_files_read.asp
 https://stackoverflow.com/questions/34785417/javafx-fxml-controller-constructor-vs-initialize-method
 https://www.geeksforgeeks.org/javafx-choicebox/#:~:text=ChoiceBox%20is%20a%20part%20of,selected%20item%20unless%20otherwise%20selected.
 https://tagmycode.com/snippet/5207/yes-no-cancel-dialog-in-javafx#.X-bJDh5R2Uk
+https://stackoverflow.com/questions/25491732/how-do-i-open-the-javafx-filechooser-from-a-controller-class/25491787
+http://tutorials.jenkov.com/javafx/filechooser.html
  */

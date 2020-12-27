@@ -10,10 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
@@ -36,7 +38,7 @@ public class AdminController extends Main
     private Alert a;
 
     @FXML
-    public void ballot_import()throws IOException
+    public void ballot_import(ActionEvent e)throws IOException
     {
         if(voting_state==1)
         {
@@ -46,26 +48,41 @@ public class AdminController extends Main
         }
         else
         {
-            try
+            FileChooser fc = new FileChooser();
+            Stage filechooser=new Stage();
+            Button select = new Button("Select File");
+            select.setOnAction(f -> {
+                File Ballotpaper = fc.showOpenDialog(filechooser);
+            });
+            Node node = (Node) e.getSource();
+            fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+            File selectedFile =fc.showOpenDialog(node.getScene().getWindow());
+            if (selectedFile != null)
             {
-                File Ballot_File = new File("Ballots.txt");
-                Scanner Ballot_Reader = new Scanner(Ballot_File);
-                while (Ballot_Reader.hasNextLine())
+                if (selectedFile.exists())
                 {
-                    String[] ballot = Ballot_Reader.nextLine().split("\\|");
-                    //System.out.println(ballot[0]+" k "+ballot[1]);
-                    Ballot bal = new Ballot(ballot[0], ballot[1]);
-                    allBallots.put(ballot[0], bal);
+                    try
+                    {
+                        File Ballot_File = new File(selectedFile.getPath());
+                        Scanner Ballot_Reader = new Scanner(Ballot_File);
+                        while (Ballot_Reader.hasNextLine())
+                        {
+                            String[] ballot = Ballot_Reader.nextLine().split("\\|");
+                            //System.out.println(ballot[0]+" k "+ballot[1]);
+                            Ballot bal = new Ballot(ballot[0], ballot[1]);
+                            allBallots.put(ballot[0], bal);
+                        }
+                        a = new Alert(AlertType.INFORMATION);
+                        a.setContentText("Successfully Imported !");
+                        a.show();
+                        Ballot_Reader.close();
+                    }
+                    catch (FileNotFoundException ex)
+                    {
+                        System.out.println("An error occurred.");
+                        ex.printStackTrace();
+                    }
                 }
-                a = new Alert(AlertType.INFORMATION);
-                a.setContentText("Successfully Imported !");
-                a.show();
-                Ballot_Reader.close();
-            }
-            catch (FileNotFoundException ex)
-            {
-                System.out.println("An error occurred.");
-                ex.printStackTrace();
             }
         }
     }
@@ -152,7 +169,7 @@ public class AdminController extends Main
     {
         try
         {
-            Candidate can=candidate_search(C_ID);
+            Candidate can = (Candidate)allCandidates.get(C_ID.getText());
             C_Name.setText(can.getName());
             C_NIC.setText(can.getNIC());
             C_P_Id.setText(can.getParty_Id());
@@ -316,7 +333,7 @@ public class AdminController extends Main
             for (HashMap.Entry<String, Candidate> set1 : allCandidates.entrySet())
             {
                 Candidate can = set1.getValue();
-                //System.out.print(can.getCandidate_Name()+"\t : \t");
+                System.out.print(can.getName()+"\t : \t");
                 int can_count=0;
                 for (HashMap.Entry<String, Vote> set2 : allVotes.entrySet())
                 {
@@ -332,15 +349,15 @@ public class AdminController extends Main
                 {
                     max=can_count;
                 }
-                /*System.out.print(can_count+" | ");
+                System.out.print(can_count+" | ");
                 for(int i=0;i<can_count;i++)
                 {
                     System.out.print("*");
                 }
-                System.out.println();*/
+                System.out.println();
             }
 
-            for(int i=0;i<max;i++)
+            /*for(int i=0;i<max;i++)
             {
                 System.out.println();
                 for (HashMap.Entry<String, CandidateCount> set : allCounts.entrySet())
@@ -362,7 +379,7 @@ public class AdminController extends Main
             {
                 Candidate can = set.getValue();
                 System.out.print(can.getName()+" \t\t\t");
-            }
+            }*/
             voting_state=2;
             a=new Alert(Alert.AlertType.INFORMATION);
             a.setContentText("Voting Has Been Ended !");
@@ -370,9 +387,44 @@ public class AdminController extends Main
         }
     }
 
+    public void can_counter()
+    {
+        candidate_count=0;
+        for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
+        {
+            candidate_count++;
+        }
+    }
+
+    public void ball_counter()
+    {
+        ballot_count=0;
+        for (HashMap.Entry<String,Ballot> set : allBallots.entrySet())
+        {
+            ballot_count++;
+        }
+    }
+
+    public static void candidate_add()
+    {
+        try
+        {
+            ResultSet r = con.createStatement().executeQuery("select * from candidates");
+            while (r.next())
+            {
+                Candidate can=new Candidate(r.getString("candidate_id"),r.getString("candidate_name"),r.getString("nic"),r.getString("party_id"),r.getString("party_name"),r.getString("address"),r.getString("tel_no"),r.getInt("age"));
+                allCandidates.put(r.getString("candidate_id"),can);
+            }
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
     @FXML
     public void initialize()
     {
+        candidate_add();
         candidates.clear();
         T_Id.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Id"));
         T_Name.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Name"));
