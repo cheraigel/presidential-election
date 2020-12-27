@@ -98,19 +98,6 @@ public class Main extends Application {
         }
     }
 
-    public void table_refresh(TableView<Candidate> TV)
-    {
-        TV.setItems(candidates);
-    }
-    {
-        /*for (HashMap.Entry<String,Candidate> set : allCandidates.entrySet())
-        {
-            Candidate can=set.getValue();
-            candidates.add(new TableLoad(can.getCandidate_Id(),can.getCandidate_Name()));
-            //tbData.setItems(member);
-        }*/
-    }
-
     public static Candidate candidate_search(TextField C_ID)
     {
         Candidate can = (Candidate)allCandidates.get(C_ID.getText());

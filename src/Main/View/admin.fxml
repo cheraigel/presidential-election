@@ -71,11 +71,11 @@
                   <Font name="Century Gothic" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="32.0" layoutY="508.0" mnemonicParsing="false" onAction="#candidateadd" stylesheets="@../Css/style.css" text="Add" />
-            <Button layoutX="119.0" layoutY="510.0" mnemonicParsing="false" onAction="#candidateedit" stylesheets="@../Css/style.css" text="Edit" />
+            <Button layoutX="32.0" layoutY="508.0" mnemonicParsing="false" onAction="#candidateadd" prefWidth="66.0" stylesheets="@../Css/style.css" text="Add" />
+            <Button layoutX="117.0" layoutY="508.0" mnemonicParsing="false" onAction="#candidateedit" prefWidth="66.0" stylesheets="@../Css/style.css" text="Edit" />
             <Button layoutX="203.0" layoutY="510.0" mnemonicParsing="false" onAction="#candidatedelete" stylesheets="@../Css/style.css" text="Delete" />
          </children></AnchorPane>
-      <TableView fx:id="T_View" layoutX="335.0" layoutY="39.0" prefHeight="476.0" prefWidth="601.0">
+      <TableView fx:id="T_View" layoutX="335.0" layoutY="98.0" prefHeight="417.0" prefWidth="601.0" style="-fx-opacity: 0.75;">
         <columns>
           <TableColumn fx:id="T_Id" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="T_Name" prefWidth="66.0" text="Name" />
@@ -87,10 +87,15 @@
             <TableColumn fx:id="T_Age" prefWidth="75.0" text="Age" />
         </columns>
       </TableView>
-      <Button layoutX="335.0" layoutY="531.0" mnemonicParsing="false" onAction="#ballot_import" stylesheets="@../Css/style.css" text="Import Bllots" />
-      <Button layoutX="517.0" layoutY="531.0" mnemonicParsing="false" onAction="#start_vote" stylesheets="@../Css/style.css" text="Start Voting" />
-      <Button layoutX="702.0" layoutY="531.0" mnemonicParsing="false" onAction="#end_vote" stylesheets="@../Css/style.css" text="End Voting" />
-      <Button layoutX="868.0" layoutY="531.0" mnemonicParsing="false" onAction="#logout" stylesheets="@../Css/style.css" text="Logout" />
+      <Button layoutX="335.0" layoutY="531.0" mnemonicParsing="false" onAction="#ballot_import" prefWidth="101.0" stylesheets="@../Css/style.css" text="Import Bllots" />
+      <Button layoutX="509.0" layoutY="531.0" mnemonicParsing="false" onAction="#start_vote" prefWidth="101.0" stylesheets="@../Css/style.css" text="Start Voting" />
+      <Button layoutX="672.0" layoutY="531.0" mnemonicParsing="false" onAction="#end_vote" prefWidth="101.0" stylesheets="@../Css/style.css" text="End Voting" />
+      <Button layoutX="835.0" layoutY="531.0" mnemonicParsing="false" onAction="#logout" prefWidth="101.0" stylesheets="@../Css/style.css" text="Logout" />
+      <Label layoutX="486.0" layoutY="41.0" stylesheets="@../Css/style.css" text="Candidates In The System">
+         <font>
+            <Font name="Century Gothic Bold" size="24.0" />
+         </font>
+      </Label>
 
    </children>
 </AnchorPane>

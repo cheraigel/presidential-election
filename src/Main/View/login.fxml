@@ -11,7 +11,7 @@
          <image>
             <Image url="@../Img/bg.png" />
          </image></ImageView>
-      <AnchorPane layoutX="60.0" layoutY="200.0" prefHeight="300.0" prefWidth="390.0">
+      <AnchorPane layoutX="60.0" layoutY="174.0" prefHeight="300.0" prefWidth="390.0">
          <children>
             <ImageView fitHeight="300.0" fitWidth="390.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.1;" styleClass="innerpain">
                <image>
@@ -38,7 +38,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="510.0" layoutY="200.0" prefHeight="300.0" prefWidth="390.0">
+      <AnchorPane layoutX="510.0" layoutY="174.0" prefHeight="300.0" prefWidth="390.0">
          <children>
             <ImageView fitHeight="300.0" fitWidth="390.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.1;">
                <image>
@@ -61,7 +61,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label layoutX="137.0" layoutY="73.0" stylesheets="@../Css/style.css" text="Welcome To The United States Election 2020">
+      <Label layoutX="98.0" layoutY="64.0" stylesheets="@../Css/style.css" text="Welcome To The United States Election 2020">
          <font>
             <Font size="36.0" />
          </font></Label>

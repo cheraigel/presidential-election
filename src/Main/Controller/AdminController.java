@@ -290,7 +290,7 @@ public class AdminController extends Main
             Stage admin=new Stage();
             Parent root2 = FXMLLoader.load(getClass().getResource("../View/login.fxml"));
             login.setTitle("Login");
-            login.setScene(new Scene(root2, 780, 475));
+            login.setScene(new Scene(root2, 960, 600));
             login.show();
             admin=(Stage) ((Node)e.getSource()).getScene().getWindow();
             admin.close();

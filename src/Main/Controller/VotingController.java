@@ -25,10 +25,7 @@ public class VotingController extends Main
     private TableView<Candidate> Can_Table;
 
     @FXML
-    private TableColumn<Candidate ,String> C_Id;
-
-    @FXML
-    private TableColumn<Candidate ,String> C_Name;
+    private TableColumn<Candidate ,String> C_Id,C_Name,C_PId,C_PName;
 
     @FXML
     private ChoiceBox C_Drop;
@@ -36,8 +33,10 @@ public class VotingController extends Main
     @FXML
     public void initialize()
     {
-        C_Id.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Candidate_Id"));
-        C_Name.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Candidate_Name"));
+        C_Id.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Id"));
+        C_Name.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Name"));
+        C_PId.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Party_Id"));
+        C_PName.setCellValueFactory(new PropertyValueFactory<Candidate,String>("Party_Name"));
         candidatenames.clear();
         candidates.clear();
         for (HashMap.Entry<String, Candidate> set : allCandidates.entrySet())

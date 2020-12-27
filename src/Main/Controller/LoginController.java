@@ -99,7 +99,7 @@ public class LoginController extends Main
                         Stage login = new Stage();
                         Parent root3 = FXMLLoader.load(getClass().getResource("../View/voting.fxml"));
                         voting.setTitle("Voting Window");
-                        voting.setScene(new Scene(root3, 800, 475));
+                        voting.setScene(new Scene(root3, 960, 600));
                         V_Id.setText("");
                         voting.show();
                     }

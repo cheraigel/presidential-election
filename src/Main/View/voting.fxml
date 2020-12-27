@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="450.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.VotingController">
+<AnchorPane prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.VotingController">
    <children>
-      <Label layoutX="524.0" layoutY="55.0" text="Select Your Vote" />
-      <Button layoutX="548.0" layoutY="312.0" mnemonicParsing="false" onAction="#vote" text="Vote" />
-      <ChoiceBox fx:id="C_Drop" layoutX="493.0" layoutY="80.0" prefWidth="150.0" />
-      <TableView fx:id="Can_Table" layoutX="51.0" layoutY="80.0" prefHeight="244.0" prefWidth="344.0">
+      <ImageView fitHeight="600.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Img/bg.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="629.0" layoutY="139.0" prefHeight="384.0" prefWidth="303.0">
+         <children>
+            <ImageView fitHeight="384.0" fitWidth="303.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.1;">
+               <image>
+                  <Image url="@../Img/innerpain3.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="91.0" layoutY="25.0" stylesheets="@../Css/style.css" text="Select Your Vote">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button layoutX="26.0" layoutY="334.0" mnemonicParsing="false" onAction="#vote" prefHeight="28.0" prefWidth="260.0" stylesheets="@../Css/style.css" text="Vote" />
+            <ChoiceBox fx:id="C_Drop" layoutX="25.0" layoutY="62.0" prefHeight="25.0" prefWidth="260.0" />
+         </children></AnchorPane>
+      <TableView fx:id="Can_Table" layoutX="51.0" layoutY="139.0" prefHeight="384.0" prefWidth="549.0" style="-fx-opacity: 0.75;">
         <columns>
-          <TableColumn fx:id="C_Id" prefWidth="115.0" text="CandidateID" />
-          <TableColumn fx:id="C_Name" prefWidth="106.0" text="CandidateName" />
+          <TableColumn fx:id="C_Id" prefWidth="132.0" text="ID" />
+          <TableColumn fx:id="C_Name" prefWidth="141.0" text="Name" />
+            <TableColumn fx:id="C_PId" prefWidth="142.0" text="Party ID" />
+            <TableColumn fx:id="C_PName" prefWidth="132.0" text="Party Name" />
         </columns>
       </TableView>
+      <Label layoutX="257.0" layoutY="61.0" stylesheets="@../Css/style.css" text="Candidates">
+         <font>
+            <Font name="Century Gothic Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
