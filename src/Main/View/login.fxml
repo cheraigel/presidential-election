@@ -1,25 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.LoginController">
    <children>
-      <AnchorPane layoutX="26.0" layoutY="46.0" prefHeight="290.0" prefWidth="355.0" style="-fx-background-color: #aaaaaa;">
+      <ImageView fitHeight="600.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 1;">
+         <image>
+            <Image url="@../Img/bg.png" />
+         </image></ImageView>
+      <AnchorPane layoutX="60.0" layoutY="200.0" prefHeight="300.0" prefWidth="390.0">
          <children>
-            <TextField fx:id="T_Uname" layoutX="154.0" layoutY="31.0" />
-            <Label layoutX="40.0" layoutY="35.0" text="Username  :" />
-            <Label layoutX="42.0" layoutY="91.0" text="Password  :" />
-            <PasswordField fx:id="T_PW" layoutX="154.0" layoutY="87.0" />
-            <Button layoutX="155.0" layoutY="207.0" mnemonicParsing="false" onAction="#login" text="Login" />
+            <ImageView fitHeight="300.0" fitWidth="390.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.1;" styleClass="innerpain">
+               <image>
+                  <Image url="@../Img/innerpain.png" />
+               </image></ImageView>
+            <TextField fx:id="T_Uname" layoutX="46.0" layoutY="90.0" prefHeight="30.0" prefWidth="300.0" promptText="Your User Name" />
+            <Label layoutX="46.0" layoutY="65.0" text="Username" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="16.0" />
+               </font></Label>
+            <Label layoutX="46.0" layoutY="132.0" text="Password" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="16.0" />
+               </font></Label>
+            <PasswordField fx:id="T_PW" layoutX="47.0" layoutY="157.0" prefHeight="30.0" prefWidth="300.0" promptText="Your Password" />
+            <Button layoutX="46.0" layoutY="221.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="300.0" styleClass="button" stylesheets="@../Css/style.css" text="Login">
+               <font>
+                  <Font name="AMILA   NORMAL" size="14.0" />
+               </font></Button>
+            <Label layoutX="159.0" layoutY="25.0" prefHeight="25.0" text="Sign In" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="402.0" layoutY="46.0" prefHeight="290.0" prefWidth="355.0" style="-fx-background-color: #aaaaaa;">
+      <AnchorPane layoutX="510.0" layoutY="200.0" prefHeight="300.0" prefWidth="390.0">
          <children>
-            <Label layoutX="32.0" layoutY="53.0" text="Voter ID :" />
-            <TextField fx:id="V_Id" layoutX="156.0" layoutY="49.0" />
-            <Button layoutX="138.0" layoutY="213.0" mnemonicParsing="false" onAction="#vote_start" text="Start Voting" />
+            <ImageView fitHeight="300.0" fitWidth="390.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.1;">
+               <image>
+                  <Image url="@../Img/innerpain.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="46.0" layoutY="65.0" text="Voter ID" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="16.0" />
+               </font></Label>
+            <TextField fx:id="V_Id" layoutX="45.0" layoutY="90.0" prefHeight="30.0" prefWidth="300.0" promptText="Your Id" />
+            <Button layoutX="45.0" layoutY="221.0" maxHeight="-Infinity" mnemonicParsing="false" onAction="#vote_start" prefHeight="30.0" prefWidth="300.0" stylesheets="@../Css/style.css" text="Start Voting" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="14.0" />
+               </font></Button>
+            <Label layoutX="167.0" layoutY="22.0" text="Vote" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
+      <Label layoutX="137.0" layoutY="73.0" stylesheets="@../Css/style.css" text="Welcome To The United States Election 2020">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
    </children>
 </AnchorPane>

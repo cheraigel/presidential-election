@@ -1,9 +1,6 @@
 package Main.Controller;
 
-import Main.Model.Ballot;
-import Main.Model.Candidate;
-import Main.Model.Main;
-import Main.Model.Vote;
+import Main.Model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.event.ActionEvent;
@@ -65,25 +62,6 @@ public class AdminController extends Main
                     //System.out.println(ballot[0]+" k "+ballot[1]);
                     Ballot bal = new Ballot(ballot[0], ballot[1]);
                     allBallots.put(ballot[0], bal);
-                    try
-                    {
-                        con.createStatement().execute("insert into ballots(ballot_id,ballot_name)values ('" + bal.getBallot_Id() + "','" + bal.getBallot_Name() + "')");
-                    }
-                    catch (SQLIntegrityConstraintViolationException ex)
-                    {
-                        try
-                        {
-                            con.createStatement().execute("update ballots set ballot_name='" + bal.getBallot_Name() + "' where ballot_id='" + bal.getBallot_Id() + "'");
-                        }
-                        catch (Exception ex3)
-                        {
-                            ex3.printStackTrace();
-                        }
-                    }
-                    catch (SQLException ex2)
-                    {
-                        ex2.printStackTrace();
-                    }
                 }
                 a = new Alert(AlertType.INFORMATION);
                 a.setContentText("Successfully Imported !");
@@ -291,7 +269,7 @@ public class AdminController extends Main
             for (HashMap.Entry<String, Candidate> set1 : allCandidates.entrySet())
             {
                 Candidate can = set1.getValue();
-                System.out.print(can.getCandidate_Name()+"\t : \t");
+                //System.out.print(can.getCandidate_Name()+"\t : \t");
                 int can_count=0;
                 for (HashMap.Entry<String, Vote> set2 : allVotes.entrySet())
                 {
@@ -301,12 +279,42 @@ public class AdminController extends Main
                         can_count++;
                     }
                 }
-                System.out.print(can_count+" | ");
+                CandidateCount ccount=new CandidateCount(can.getCandidate_Id(),can_count);
+                allCounts.put(can.getCandidate_Id(),ccount);
+                if(can_count>max)
+                {
+                    max=can_count;
+                }
+                /*System.out.print(can_count+" | ");
                 for(int i=0;i<can_count;i++)
                 {
                     System.out.print("*");
                 }
+                System.out.println();*/
+            }
+
+            for(int i=0;i<max;i++)
+            {
                 System.out.println();
+                for (HashMap.Entry<String, CandidateCount> set : allCounts.entrySet())
+                {
+                    CandidateCount ccount = set.getValue();
+                    int count=ccount.getCandidate_Count();
+                    if(count<max)
+                    {
+                        System.out.print(" \t\t\t");
+                    }
+                    else
+                    {
+                        System.out.print("-\t\t\t");
+                    }
+                }
+            }
+            System.out.println();
+            for (HashMap.Entry<String, Candidate> set : allCandidates.entrySet())
+            {
+                Candidate can = set.getValue();
+                System.out.print(can.getCandidate_Name()+" \t\t\t");
             }
             voting_state=2;
             a=new Alert(Alert.AlertType.INFORMATION);

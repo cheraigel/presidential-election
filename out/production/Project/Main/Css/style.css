@@ -1,0 +1,10 @@
+.button
+{
+    -fx-background-color: indigo;
+    -fx-font: 14px "Century Gothic";
+    -fx-text-fill: white;
+}
+.label
+{
+    -fx-text-fill: white;
+}

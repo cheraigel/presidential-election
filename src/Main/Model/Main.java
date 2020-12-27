@@ -26,10 +26,11 @@ public class Main extends Application {
     public static HashMap<String,Candidate> allCandidates=new HashMap<>();
     public static HashMap<String,Ballot> allBallots=new HashMap<>();
     public static HashMap<String,Vote> allVotes=new HashMap<>();
+    public static HashMap<String,CandidateCount> allCounts=new HashMap<>();
     public static ObservableList<Candidate> candidates = FXCollections.observableArrayList();
     public static ObservableList<String> candidatenames = FXCollections.observableArrayList();
     public static ObservableList<String> candidateids = FXCollections.observableArrayList();
-    public static int voting_state=0,candidate_count=0,ballot_count=0;
+    public static int voting_state=0,candidate_count=0,ballot_count=0,max=-1;
 
     public static String Ballot_Id;
 
@@ -43,7 +44,7 @@ public class Main extends Application {
     {
         Parent root = FXMLLoader.load(getClass().getResource("../View/login.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 780, 475));
+        primaryStage.setScene(new Scene(root, 960, 600));
         primaryStage.show();
     }
 

@@ -6,11 +6,16 @@ import Main.Model.Main;
 import Main.Model.Vote;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import javafx.stage.Stage;
 import java.util.HashMap;
 
 public class VotingController extends Main
@@ -47,7 +52,7 @@ public class VotingController extends Main
     }
 
     @FXML
-    public void vote()
+    public void vote(ActionEvent e)
     {
         final Alert[] a = new Alert[3];
         String Cand_Id= candidateids.get(C_Drop.getSelectionModel().getSelectedIndex());
@@ -65,6 +70,16 @@ public class VotingController extends Main
                         a[1] =new Alert(AlertType.INFORMATION);
                         a[1].setContentText("Successfully Added !");
                         a[1].show();
+                        try
+                        {
+                            Stage voting=new Stage();
+                            voting=(Stage) ((Node)e.getSource()).getScene().getWindow();
+                            voting.close();
+                        }
+                        catch(Exception ex)
+                        {
+                            ex.printStackTrace();
+                        }
                     }
                     else if (type == no)
                     {
