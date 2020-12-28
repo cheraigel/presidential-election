@@ -389,14 +389,16 @@ public class AdminController extends Main
             for (HashMap.Entry<String, Candidate> set1 : allCandidates.entrySet())
             {
                 Candidate can = set1.getValue();
-                System.out.print(can.getName()+"\t : \t");
+
+
+                //System.out.print(can.getName()+"\t : \t");
                 int can_count=0;
                 for (HashMap.Entry<String, Vote> set2 : allVotes.entrySet())
                 {
                     Vote vot = set2.getValue();
                     if(vot.getCandidate_Id().equals(can.getId()))
                     {
-                        can_count++;
+                        can_count=can_count+1;
                     }
                 }
                 CandidateCount ccount=new CandidateCount(can.getId(),can_count);
@@ -405,37 +407,64 @@ public class AdminController extends Main
                 {
                     max=can_count;
                 }
-                System.out.print(can_count+" | ");
+                if(can.getName().length()>maxchar)
+                {
+                    maxchar=can.getName().length();
+                }
+                /*System.out.print(can_count+" | ");
                 for(int i=0;i<can_count;i++)
                 {
                     System.out.print("*");
                 }
-                System.out.println();
+                System.out.println();*/
             }
-
-            /*for(int i=0;i<max;i++)
+            String Align_Format = " %-"+(maxchar+2)+"s ";
+            for(int i=max;i>=0;i--)
             {
+                //System.out.println("uuuu");
                 System.out.println();
                 for (HashMap.Entry<String, CandidateCount> set : allCounts.entrySet())
                 {
                     CandidateCount ccount = set.getValue();
                     int count=ccount.getCandidate_Count();
-                    if(count<max)
+                    if(count<=i)
                     {
-                        System.out.print(" \t\t\t");
+                        System.out.format(Align_Format," ");
                     }
                     else
                     {
-                        System.out.print("-\t\t\t");
+                        System.out.format(Align_Format,"*");
                     }
                 }
             }
             System.out.println();
+            String under="";
+            for(int i=0;i<maxchar;i++)
+            {
+                under=under+"_";
+            }
+            String Align_Format3 = "__%-"+(maxchar)+"s_";
+            for (HashMap.Entry<String, CandidateCount> set : allCounts.entrySet())
+            {
+                CandidateCount coun = set.getValue();
+                System.out.format(Align_Format3,under);
+            }
+            System.out.println();
+            String Align_Format2 = " |%-"+(maxchar+1)+"s ";
             for (HashMap.Entry<String, Candidate> set : allCandidates.entrySet())
             {
                 Candidate can = set.getValue();
-                System.out.print(can.getName()+" \t\t\t");
-            }*/
+                System.out.format(Align_Format,can.getName());
+            }
+            System.out.println();
+            int Total_votes=0;
+            for (HashMap.Entry<String, CandidateCount> set : allCounts.entrySet())
+            {
+                CandidateCount coun = set.getValue();
+                System.out.format(Align_Format,coun.getCandidate_Count());
+                Total_votes=Total_votes+coun.getCandidate_Count();
+            }
+            System.out.println("\n\nTotal Votes : "+Total_votes);
             //end voting
             voting_state=2;
             a=new Alert(Alert.AlertType.INFORMATION);

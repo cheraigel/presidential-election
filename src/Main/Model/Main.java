@@ -31,7 +31,7 @@ public class Main extends Application {
     public static ObservableList<String> candidatenames = FXCollections.observableArrayList();  //observable list to store candidate names individually
     public static ObservableList<String> candidateids = FXCollections.observableArrayList();    //observable list to store candidate ids individually
     //integers for keep voting status, ballot count,candidate count and for maximum number of votes
-    public static int voting_state=0,candidate_count=0,ballot_count=0,max=-1;
+    public static int voting_state=0,candidate_count=0,ballot_count=0,max=0,maxchar=-1;
     //String for store ballot ids
     public static String Ballot_Id;
     //local variables to store attributes of candidates temporally
