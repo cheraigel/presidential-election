@@ -1,5 +1,6 @@
 package Main.Model;
 
+//class for candidate count model
 public class CandidateCount
 {
     private String Candidate_Id;

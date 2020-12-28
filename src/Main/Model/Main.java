@@ -22,16 +22,19 @@ import java.util.HashMap;
 
 public class Main extends Application {
 
-    public static Connection con;
-    public static HashMap<String,Candidate> allCandidates=new HashMap<>();
-    public static HashMap<String,Ballot> allBallots=new HashMap<>();
-    public static HashMap<String,Vote> allVotes=new HashMap<>();
-    public static HashMap<String,CandidateCount> allCounts=new HashMap<>();
-    public static ObservableList<Candidate> candidates = FXCollections.observableArrayList();
-    public static ObservableList<String> candidatenames = FXCollections.observableArrayList();
-    public static ObservableList<String> candidateids = FXCollections.observableArrayList();
+    public static Connection con;   //for mysql db connection
+    public static HashMap<String,Candidate> allCandidates=new HashMap<>();  //for store candidates
+    public static HashMap<String,Ballot> allBallots=new HashMap<>();    //for store ballots
+    public static HashMap<String,Vote> allVotes=new HashMap<>();    //for store votes
+    public static HashMap<String,CandidateCount> allCounts=new HashMap<>(); //for store results for each candidate
+    public static ObservableList<Candidate> candidates = FXCollections.observableArrayList();   //observable list for view candidates on table view
+    public static ObservableList<String> candidatenames = FXCollections.observableArrayList();  //observable list to store candidate names individually
+    public static ObservableList<String> candidateids = FXCollections.observableArrayList();    //observable list to store candidate ids individually
+    //integers for keep voting status, ballot count,candidate count and for maximum number of votes
     public static int voting_state=0,candidate_count=0,ballot_count=0,max=-1;
+    //String for store ballot ids
     public static String Ballot_Id;
+    //local variables to store attributes of candidates temporally
     public String CId,CName,CNIC,CPId,CPName,CAddress,CTelNo;
     public int CAge;
 
@@ -46,6 +49,7 @@ public class Main extends Application {
 
     public static void main(String[] args)
     {
+        //this is for create mysql database connection in the start of application
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -59,8 +63,6 @@ public class Main extends Application {
         launch(args);
     }
 }
-
-
 
 /*
 References
@@ -79,4 +81,5 @@ https://www.geeksforgeeks.org/javafx-choicebox/#:~:text=ChoiceBox%20is%20a%20par
 https://tagmycode.com/snippet/5207/yes-no-cancel-dialog-in-javafx#.X-bJDh5R2Uk
 https://stackoverflow.com/questions/25491732/how-do-i-open-the-javafx-filechooser-from-a-controller-class/25491787
 http://tutorials.jenkov.com/javafx/filechooser.html
+https://www.programcreek.com/java-api-examples/?api=javafx.stage.FileChooser
  */

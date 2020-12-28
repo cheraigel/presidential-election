@@ -1,5 +1,6 @@
 package Main.Model;
 
+//class for candidate model
 public class Candidate
 {
     private String Id,Name,NIC,Party_Id,Party_Name,Address,TelNo;

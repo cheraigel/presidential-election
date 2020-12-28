@@ -1,5 +1,6 @@
 package Main.Model;
 
+//class for voting model
 public class Vote
 {
     private String Ballot_ID,Candidate_Id;

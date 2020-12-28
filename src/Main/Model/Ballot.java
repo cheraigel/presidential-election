@@ -1,5 +1,6 @@
 package Main.Model;
 
+//class for ballot model
 public class Ballot
 {
     private String Ballot_Id,Ballot_Name;
